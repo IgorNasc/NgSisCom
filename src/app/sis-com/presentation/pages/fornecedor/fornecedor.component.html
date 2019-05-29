@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group dynamicHeight (selectedTabChange)="selectedTabChange($event)">
 
   <mat-tab label="Consultar">
 
@@ -8,28 +8,46 @@
 
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      <!-- Codigo Column -->
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
+        <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
       </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <!-- CNPJ Column -->
+      <ng-container matColumnDef="cnpj">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> CNPJ </th>
+        <td mat-cell *matCellDef="let element"> {{element.cnpj}} </td>
       </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      <!-- Cadastro Column -->
+      <ng-container matColumnDef="dataCad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cadastro </th>
+        <td mat-cell *matCellDef="let element"> {{element.dataCad | date:'dd/MM/yyyy'}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <!-- Nome Column -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+      </ng-container>
+
+      <!-- Contato Column -->
+      <ng-container matColumnDef="nomeContato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Contato </th>
+        <td mat-cell *matCellDef="let element"> {{element.nomeContato}} </td>
+      </ng-container>
+
+      <!-- Telefone Column -->
+      <ng-container matColumnDef="telefone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefone </th>
+        <td mat-cell *matCellDef="let element"> {{element.telefones}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -38,6 +56,31 @@
 
 
   </mat-tab>
-  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Cadastrar">
+    <!-- #fornecedorForm="ngForm" -->
+    <form (ngSubmit)="onSubmit()" #fornecedorForm="ngForm">
+      <!-- <input placeholder="SS" matInput type="number" id="ss" [(ngModel)]="ambiente.ss" name="ss" required> -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nome" [(ngModel)]="fornecedor.nome" name="nome" id="nome" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Telefone" [(ngModel)]="fornecedor.telefones" name="telefone" id="telefone"
+          required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" [(ngModel)]="fornecedor.email" name="email" id="email" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="CNPJ" [(ngModel)]="fornecedor.cnpj" name="cnpj" id="cnpj" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nome do Contato" [(ngModel)]="fornecedor.nomeContato" name="nomeContato"
+          id="nomeContato" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!fornecedorForm.form.valid" class="btnSave">
+        Salvar
+      </button>
+    </form>
+  </mat-tab>
   <mat-tab label="Third"> Content 3 </mat-tab>
 </mat-tab-group>
