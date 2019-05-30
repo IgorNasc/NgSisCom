@@ -5,7 +5,6 @@ import { FornecedorService } from 'src/app/sis-com/business/service/fornecedor.s
 
 import { Fornecedor } from 'src/app/sis-com/business/model/fornecedor.model';
 import { RestOutput } from 'src/app/sis-com/business/model/RestOutPut.model';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-fornecedor',
@@ -17,7 +16,7 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 })
 export class FornecedorComponent implements OnInit {
 
-  displayedColumns: string[] = ['codigo', 'cnpj', 'dataCad', 'email', 'nome', 'nomeContato', 'telefone'];
+  displayedColumns: string[] = ['codigo', 'cnpj', 'dataCad', 'email', 'nome', 'nomeContato', 'telefone', 'action'];
   dataSource: MatTableDataSource<Fornecedor>;
   fornecedor: Fornecedor;
 
@@ -61,13 +60,23 @@ export class FornecedorComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.fornecedor);
     this.fornecedorService.save(this.fornecedor).subscribe(
       (data: RestOutput<Fornecedor>) => {
-        console.log("success");
+
       },
       (error: any) => {
-        console.log("error");
+
+      }
+    );
+  }
+
+  onDelete(fornecedor: Fornecedor){
+    this.fornecedorService.delete(fornecedor).subscribe(
+      (data: RestOutput<Fornecedor>) => {
+        this.getFornecedores();
+      },
+      (error: any) => {
+        console.log("error")
       }
     );
   }

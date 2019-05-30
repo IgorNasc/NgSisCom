@@ -7,7 +7,8 @@ import {
   MatSortModule,
   MatFormFieldModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatIconModule
 } from '@angular/material'
 
 @NgModule({
@@ -21,7 +22,8 @@ import {
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class CustomMaterialModule { }

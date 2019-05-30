@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from './sis-com/system/angular/custom-material-module.module';
 import { FornecedorComponent } from './sis-com/presentation/pages/fornecedor/fornecedor.component';
 import { PainelComponent } from './sis-com/presentation/pages/painel/painel.component';
+import { ClienteComponent } from './sis-com/presentation/pages/cliente/cliente.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PainelComponent } from './sis-com/presentation/pages/painel/painel.comp
     HomeComponent,
     MenuComponent,
     FornecedorComponent,
-    PainelComponent
+    PainelComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,

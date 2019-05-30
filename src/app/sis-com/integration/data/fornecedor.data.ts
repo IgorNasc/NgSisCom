@@ -25,4 +25,8 @@ export class FornecedorData {
   save(body: RestInput<Fornecedor>){
     return this.fornecedorApi.post(this.getDefautContext() + "cadastrar", body);
   }
+
+  delete(codigo: Number){
+    return this.fornecedorApi.delete(this.getDefautContext() + "delete/" + codigo);
+  }
 }

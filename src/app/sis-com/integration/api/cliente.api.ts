@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment as env } from 'src/environments/environment';
 
-import { Fornecedor } from '../../business/model/fornecedor.model';
 import { RestInput } from '../../business/model/restinput.model';
+import { Cliente } from '../../business/model/cliente.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FornecedorApi {
+export class ClienteApi {
 
   constructor(
     private httpClient: HttpClient
@@ -23,7 +23,7 @@ export class FornecedorApi {
     return this.httpClient.get(this.getDefautUrl() + context)
   }
 
-  post(context: String, body: RestInput<Fornecedor>){
+  post(context: String, body: RestInput<Cliente>){
     return this.httpClient.post(this.getDefautUrl() + context, body);
   }
 
