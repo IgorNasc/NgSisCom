@@ -14,6 +14,7 @@ import { CustomMaterialModule } from './sis-com/system/angular/custom-material-m
 import { FornecedorComponent } from './sis-com/presentation/pages/fornecedor/fornecedor.component';
 import { PainelComponent } from './sis-com/presentation/pages/painel/painel.component';
 import { ClienteComponent } from './sis-com/presentation/pages/cliente/cliente.component';
+import { ProdutoComponent } from './sis-com/presentation/pages/produto/produto.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ClienteComponent } from './sis-com/presentation/pages/cliente/cliente.c
     MenuComponent,
     FornecedorComponent,
     PainelComponent,
-    ClienteComponent
+    ClienteComponent,
+    ProdutoComponent
   ],
   imports: [
     BrowserModule,

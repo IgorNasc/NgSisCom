@@ -1,0 +1,92 @@
+<mat-tab-group dynamicHeight (selectedTabChange)="selectedTabChange($event)">
+
+  <mat-tab label="Consultar">
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!-- Codigo Column -->
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
+        <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+      </ng-container>
+
+      <!-- Nome Column -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+      </ng-container>
+
+      <!-- precoUnitario Column -->
+      <ng-container matColumnDef="precoUnitario">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Preço Unitário </th>
+        <td mat-cell *matCellDef="let element"> {{element.precoUnitario}} </td>
+      </ng-container>
+
+      <!-- Estoque Column -->
+      <ng-container matColumnDef="estoque">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estoque </th>
+        <td mat-cell *matCellDef="let element"> {{element.estoque}} </td>
+      </ng-container>
+
+      <!-- Estoque Mínimo Column -->
+      <ng-container matColumnDef="estoqueMinimo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estoque Mínimo </th>
+        <td mat-cell *matCellDef="let element"> {{element.estoqueMinimo}} </td>
+      </ng-container>
+
+      <!-- Cadastro Column -->
+      <ng-container matColumnDef="dataCad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cadastro </th>
+        <td mat-cell *matCellDef="let element"> {{element.dataCad | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" class="btnSave" (click)="onDelete(element)">
+            <mat-icon aria-hidden="false" aria-label="Delete action" title="Deletar">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </mat-tab>
+  <mat-tab label="Cadastrar">
+
+    <form (ngSubmit)="onSubmit()" #produtoForm="ngForm">
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nome" [(ngModel)]="produto.nome" name="nome" id="nome" required>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Preço Unitário" [(ngModel)]="produto.precoUnitario" name="precoUnitario"
+          id="precoUnitario" required>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Estoque" [(ngModel)]="produto.estoque" name="estoque" id="estoque" required>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Estoque Mínimo" [(ngModel)]="produto.estoqueMinimo" name="estoqueMinimo"
+          id="estoqueMinimo" required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!produtoForm.form.valid" class="btnSave">
+        Salvar
+      </button>
+
+    </form>
+
+  </mat-tab>
+
+</mat-tab-group>

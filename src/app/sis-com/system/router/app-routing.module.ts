@@ -7,6 +7,7 @@ import { HomeComponent } from '../../presentation/pages/home/home.component';
 import { PainelComponent } from '../../presentation/pages/painel/painel.component';
 import { FornecedorComponent } from '../../presentation/pages/fornecedor/fornecedor.component';
 import { ClienteComponent } from '../../presentation/pages/cliente/cliente.component';
+import { ProdutoComponent } from '../../presentation/pages/produto/produto.component';
 
 const SisComRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -14,6 +15,7 @@ const SisComRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'fornecedor', component: FornecedorComponent },
     { path: 'cliente', component: ClienteComponent },
+    { path: 'produto', component: ProdutoComponent },
   ] },
   { path: 'administrador', component: PainelComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home'}

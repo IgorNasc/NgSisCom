@@ -18,15 +18,15 @@ export class ClienteService {
     return this.clientData.findAll();
   }
 
-  save(fornecedor: Cliente){
+  save(cliente: Cliente){
     let input = new RestInput<Cliente>();
 
-    input.entity = fornecedor;
+    input.entity = cliente;
 
     return this.clientData.save(input);
   }
 
-  delete(fornecedor: Cliente){
-    return this.clientData.delete(fornecedor.codigo);
+  delete(cliente: Cliente){
+    return this.clientData.delete(cliente.codigo);
   }
 }
