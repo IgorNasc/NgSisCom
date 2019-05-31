@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
-import { Produto } from 'src/app/sis-com/business/model/produto.model';
+
 import { ProdutoService } from 'src/app/sis-com/business/service/produto.service';
+
+import { Produto } from 'src/app/sis-com/business/model/produto.model';
 import { RestOutput } from 'src/app/sis-com/business/model/RestOutPut.model';
 
 @Component({

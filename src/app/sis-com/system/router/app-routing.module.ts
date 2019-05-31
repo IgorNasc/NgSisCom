@@ -8,6 +8,8 @@ import { PainelComponent } from '../../presentation/pages/painel/painel.componen
 import { FornecedorComponent } from '../../presentation/pages/fornecedor/fornecedor.component';
 import { ClienteComponent } from '../../presentation/pages/cliente/cliente.component';
 import { ProdutoComponent } from '../../presentation/pages/produto/produto.component';
+import { ComprasComponent } from '../../presentation/pages/compras/compras.component';
+import { VendedorComponent } from '../../presentation/pages/vendedor/vendedor.component';
 
 const SisComRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -16,6 +18,8 @@ const SisComRoutes: Routes = [
     { path: 'fornecedor', component: FornecedorComponent },
     { path: 'cliente', component: ClienteComponent },
     { path: 'produto', component: ProdutoComponent },
+    { path: 'comprar', component: ComprasComponent },
+    { path: 'vendedor', component: VendedorComponent }
   ] },
   { path: 'administrador', component: PainelComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home'}

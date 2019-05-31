@@ -1,0 +1,101 @@
+<mat-tab-group dynamicHeight (selectedTabChange)="selectedTabChange($event)">
+
+    <mat-tab label="Consultar">
+
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- Codigo Column -->
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
+          <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+        </ng-container>
+
+        <!-- CPF Column -->
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> CPF </th>
+          <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
+        </ng-container>
+
+        <!-- Cadastro Column -->
+        <ng-container matColumnDef="dataCad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cadastro </th>
+          <td mat-cell *matCellDef="let element"> {{element.dataCad | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- Nome Column -->
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+          <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+        </ng-container>
+
+        <!-- Meta Mensal Credito Column -->
+        <ng-container matColumnDef="metaMensal">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Meta Mensal </th>
+          <td mat-cell *matCellDef="let element"> {{element.metaMensal}} </td>
+        </ng-container>
+
+        <!-- Telefone Column -->
+        <ng-container matColumnDef="telefone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefone </th>
+          <td mat-cell *matCellDef="let element"> {{element.telefones}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" class="btnSave" (click)="onDelete(element)">
+              <mat-icon aria-hidden="false" aria-label="Delete action" title="Deletar">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </mat-tab>
+    <mat-tab label="Cadastrar">
+
+      <form (ngSubmit)="onSubmit()" #vendedorForm="ngForm">
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nome" [(ngModel)]="vendedor.nome" name="nome" id="nome" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Telefone" [(ngModel)]="vendedor.telefones" name="telefone" id="telefone" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" [(ngModel)]="vendedor.email" name="email" id="email" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="CPF" [(ngModel)]="vendedor.cpf" name="cpf" id="cpf" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Meta de Venda" type="number" [(ngModel)]="vendedor.metaMensal"
+            name="metaMensal" id="metaMensal" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!vendedorForm.form.valid" class="btnSave">
+          Salvar
+        </button>
+
+      </form>
+
+    </mat-tab>
+
+  </mat-tab-group>

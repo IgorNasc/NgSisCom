@@ -1,0 +1,92 @@
+<mat-tab-group dynamicHeight (selectedTabChange)="selectedTabChange($event)">
+
+  <mat-tab label="Consultar">
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!-- Codigo Column -->
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
+        <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+      </ng-container>
+
+      <!-- Fornecedor Column -->
+      <ng-container matColumnDef="fornecedor">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fornecedor </th>
+        <td mat-cell *matCellDef="let element"> {{element.fornecedor.nome}} </td>
+      </ng-container>
+
+      <!-- Cadastro Column -->
+      <ng-container matColumnDef="dataCad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cadastro </th>
+        <td mat-cell *matCellDef="let element"> {{element.dataCad | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" class="btnSave" (click)="onDelete(element)">
+            <mat-icon aria-hidden="false" aria-label="Delete action" title="Deletar">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </mat-tab>
+  <mat-tab label="Cadastrar">
+
+    <form (ngSubmit)="onSubmit()" #clienteForm="ngForm">
+
+      <mat-form-field>
+        <mat-label>Fornecedor</mat-label>
+        <mat-select [(ngModel)]="compra.fornecedor" name="fornecedor" id="fornecedor" required>
+          <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor">
+            {{fornecedor.nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button type="button" color="primary" (click)="adicionarProduto()">
+        Adicionar Produto
+      </button>
+
+      <div>
+        <table>
+          <tr *ngFor="let itens of compra.listaCompra">
+            <td>
+              <mat-form-field>
+                <mat-label>Produto</mat-label>
+                <mat-select [(ngModel)]="itens.produto" name="produto" id="produto" required>
+                  <mat-option *ngFor="let produto of produtos" [value]="produto">
+                    {{produto.nome}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Quantidade" [(ngModel)]="itens.quantCompra" name="quantCompra"
+                  id="quantCompra" required>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!clienteForm.form.valid" class="btnSave">
+        Salvar
+      </button>
+
+    </form>
+
+  </mat-tab>
+
+</mat-tab-group>

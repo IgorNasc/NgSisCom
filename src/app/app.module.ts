@@ -15,6 +15,8 @@ import { FornecedorComponent } from './sis-com/presentation/pages/fornecedor/for
 import { PainelComponent } from './sis-com/presentation/pages/painel/painel.component';
 import { ClienteComponent } from './sis-com/presentation/pages/cliente/cliente.component';
 import { ProdutoComponent } from './sis-com/presentation/pages/produto/produto.component';
+import { ComprasComponent } from './sis-com/presentation/pages/compras/compras.component';
+import { VendedorComponent } from './sis-com/presentation/pages/vendedor/vendedor.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ProdutoComponent } from './sis-com/presentation/pages/produto/produto.c
     FornecedorComponent,
     PainelComponent,
     ClienteComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    ComprasComponent,
+    VendedorComponent
   ],
   imports: [
     BrowserModule,
