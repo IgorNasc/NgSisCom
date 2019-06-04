@@ -10,6 +10,7 @@ import { ClienteComponent } from '../../presentation/pages/cliente/cliente.compo
 import { ProdutoComponent } from '../../presentation/pages/produto/produto.component';
 import { ComprasComponent } from '../../presentation/pages/compras/compras.component';
 import { VendedorComponent } from '../../presentation/pages/vendedor/vendedor.component';
+import { VendaComponent } from '../../presentation/pages/venda/venda.component';
 
 const SisComRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -19,7 +20,8 @@ const SisComRoutes: Routes = [
     { path: 'cliente', component: ClienteComponent },
     { path: 'produto', component: ProdutoComponent },
     { path: 'comprar', component: ComprasComponent },
-    { path: 'vendedor', component: VendedorComponent }
+    { path: 'vendedor', component: VendedorComponent },
+    { path: 'venda', component: VendaComponent }
   ] },
   { path: 'administrador', component: PainelComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home'}

@@ -27,6 +27,6 @@ export class CompraData {
   }
 
   delete(codigo: Number){
-    return this.clientApi.delete(this.getDefautContext() + "fornecedor/excluir/" + codigo);
+    return this.clientApi.delete(this.getDefautContext() + "fornecedor/delete/" + codigo);
   }
 }

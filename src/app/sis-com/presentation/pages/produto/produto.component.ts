@@ -50,6 +50,18 @@ export class ProdutoComponent implements OnInit {
     );
   }
 
+  getProdutosMinimo(){
+    this.produtoService.findMinimo().subscribe(
+      (data: RestOutput<Produto>) => {
+        this.dataSource = new MatTableDataSource(data.listEntity);
+        this.dataSource.sort = this.sort;
+      },
+      (error: any) => {
+
+      }
+    );
+  }
+
   selectedTabChange(valor: any){
     if(valor.index == 0){
       this.getProdutos();

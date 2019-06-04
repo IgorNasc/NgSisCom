@@ -22,6 +22,10 @@ export class ProdutoData {
     return this.produtodorApi.get(this.getDefautContext() + "findAll");
   }
 
+  findMinimo(){
+    return this.produtodorApi.get(this.getDefautContext() + "findEstoqueLessThenMinimo");
+  }
+
   save(body: RestInput<Produto>){
     return this.produtodorApi.post(this.getDefautContext() + "cadastrar", body);
   }

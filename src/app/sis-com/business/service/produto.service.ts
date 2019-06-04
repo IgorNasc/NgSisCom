@@ -18,6 +18,10 @@ export class ProdutoService {
     return this.produtoData.findAll();
   }
 
+  findMinimo(){
+    return this.produtoData.findMinimo();
+  }
+
   save(produto: Produto){
     let input = new RestInput<Produto>();
 

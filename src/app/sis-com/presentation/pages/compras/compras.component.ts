@@ -54,6 +54,12 @@ export class ComprasComponent implements OnInit {
     this.compraService.findAll().subscribe(
       (data: RestOutput<Compra>) => {
         this.dataSource = new MatTableDataSource(data.listEntity);
+        this.dataSource.sortingDataAccessor = (item, property) => {
+          switch(property) {
+            case 'fornecedor': return item.fornecedor.nome;
+            default: return item[property];
+          }
+        };
         this.dataSource.sort = this.sort;
         console.log(data.listEntity)
       },
