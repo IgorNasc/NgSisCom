@@ -18,6 +18,7 @@ import { ProdutoComponent } from './sis-com/presentation/pages/produto/produto.c
 import { ComprasComponent } from './sis-com/presentation/pages/compras/compras.component';
 import { VendedorComponent } from './sis-com/presentation/pages/vendedor/vendedor.component';
 import { VendaComponent } from './sis-com/presentation/pages/venda/venda.component';
+import { RelatoriosComponent } from './sis-com/presentation/pages/relatorios/relatorios.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { VendaComponent } from './sis-com/presentation/pages/venda/venda.compone
     ProdutoComponent,
     ComprasComponent,
     VendedorComponent,
-    VendaComponent
+    VendaComponent,
+    RelatoriosComponent
   ],
   imports: [
     BrowserModule,

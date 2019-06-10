@@ -11,6 +11,7 @@ import { ProdutoComponent } from '../../presentation/pages/produto/produto.compo
 import { ComprasComponent } from '../../presentation/pages/compras/compras.component';
 import { VendedorComponent } from '../../presentation/pages/vendedor/vendedor.component';
 import { VendaComponent } from '../../presentation/pages/venda/venda.component';
+import { RelatoriosComponent } from '../../presentation/pages/relatorios/relatorios.component';
 
 const SisComRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -21,7 +22,8 @@ const SisComRoutes: Routes = [
     { path: 'produto', component: ProdutoComponent },
     { path: 'comprar', component: ComprasComponent },
     { path: 'vendedor', component: VendedorComponent },
-    { path: 'venda', component: VendaComponent }
+    { path: 'venda', component: VendaComponent },
+    { path: 'relatorios', component: RelatoriosComponent }
   ] },
   { path: 'administrador', component: PainelComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home'}
