@@ -85,7 +85,7 @@ export class ProdutoComponent implements OnInit {
         this.getProdutos();
       },
       (error: any) => {
-        console.log("error")
+
       }
     );
   }

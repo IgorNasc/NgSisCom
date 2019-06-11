@@ -10,3 +10,18 @@ th.mat-sort-header-sorted {
   font-size: 14px;
   width: 100%;
 }
+
+.mat-tab-group{
+  padding: 0 15px !important;
+}
+
+.col-2{
+
+  .mat-form-field{
+    width: 50%;
+  }
+
+  button{
+    margin-left: 50px;
+  }
+}

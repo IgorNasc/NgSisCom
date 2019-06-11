@@ -1,4 +1,38 @@
 .menu{
   float: left;
   width: 20%;
+  height: 100%;
+  background-color: #302b27;
+
+  .title{
+    font-size: 42px;
+    padding-left: 50px;
+    padding-top: 20px;
+
+    a{
+      color: #576ca8;
+      text-decoration: none;
+    }
+  }
+
+  ul{
+    padding: 0;
+    list-style: none;
+
+    li{
+      padding: 7px 0 7px 10px;
+
+      a{
+        color: #f5f3f5;
+        text-decoration: none;
+        font-size: 17px;
+
+        .mat-icon{
+          position: relative;
+          top: 5px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
 }

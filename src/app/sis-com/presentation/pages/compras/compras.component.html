@@ -45,18 +45,22 @@
 
     <form (ngSubmit)="onSubmit()" #clienteForm="ngForm">
 
-      <mat-form-field>
-        <mat-label>Fornecedor</mat-label>
-        <mat-select [(ngModel)]="compra.fornecedor" name="fornecedor" id="fornecedor" required>
-          <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor">
-            {{fornecedor.nome}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="col-2">
 
-      <button mat-raised-button type="button" color="primary" (click)="adicionarProduto()">
-        Adicionar Produto
-      </button>
+        <mat-form-field>
+          <mat-label>Fornecedor</mat-label>
+          <mat-select [(ngModel)]="compra.fornecedor" name="fornecedor" id="fornecedor" required>
+            <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor">
+              {{fornecedor.nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button type="button" color="primary" (click)="adicionarProduto()">
+          Adicionar Produto
+        </button>
+
+      </div>
 
       <div>
         <table>

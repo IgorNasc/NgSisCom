@@ -57,36 +57,44 @@
 
     <form (ngSubmit)="onSubmit()" #clienteForm="ngForm">
 
-      <mat-form-field>
-        <mat-label>Forma pagamento</mat-label>
-        <mat-select [(ngModel)]="venda.formaPagto" name="formaPagto" id="formaPagto" required>
-          <mat-option [value]="1">Débito</mat-option>
-          <mat-option [value]="2">Credito</mat-option>
-          <mat-option [value]="3">Dinheiro</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="col-2">
 
-      <mat-form-field>
-        <mat-label>Cliente</mat-label>
-        <mat-select [(ngModel)]="venda.cliente" name="cliente" id="cliente" required>
-          <mat-option *ngFor="let cliente of clientes" [value]="cliente">
-            {{cliente.nome}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Vendedor</mat-label>
+          <mat-select [(ngModel)]="venda.vendedor" name="vendedor" id="vendedor" required>
+            <mat-option *ngFor="let vendedor of vendedores" [value]="vendedor">
+              {{vendedor.nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Vendedor</mat-label>
-        <mat-select [(ngModel)]="venda.vendedor" name="vendedor" id="vendedor" required>
-          <mat-option *ngFor="let vendedor of vendedores" [value]="vendedor">
-            {{vendedor.nome}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cliente</mat-label>
+          <mat-select [(ngModel)]="venda.cliente" name="cliente" id="cliente" required>
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente">
+              {{cliente.nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <button mat-raised-button type="button" color="primary" (click)="adicionarProduto()">
-        Adicionar Produto
-      </button>
+      </div>
+
+      <div class="col-2">
+
+        <mat-form-field>
+          <mat-label>Forma pagamento</mat-label>
+          <mat-select [(ngModel)]="venda.formaPagto" name="formaPagto" id="formaPagto" required>
+            <mat-option [value]="1">Débito</mat-option>
+            <mat-option [value]="2">Credito</mat-option>
+            <mat-option [value]="3">Dinheiro</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button type="button" color="primary" (click)="adicionarProduto()">
+          Adicionar Produto
+        </button>
+
+      </div>
 
       <div>
         <table>

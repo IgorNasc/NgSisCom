@@ -6,13 +6,17 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="button" (click)="getProdutos()">
-      Listar Todos
-    </button>
+    <div class="list-options">
 
-    <button mat-raised-button color="primary" type="button" (click)="getProdutosMinimo()">
-      Listar Minimos
-    </button>
+      <button mat-raised-button color="primary" type="button" (click)="getProdutos()">
+        Listar Todos
+      </button>
+
+      <button mat-raised-button color="primary" type="button" (click)="getProdutosMinimo()">
+        Listar Minimos
+      </button>
+
+    </div>
 
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 

@@ -34,7 +34,7 @@ export class RelatoriosComponent implements OnInit {
     }
   }
 
-  getRelatorioVendaVendedor(){
+  getRelatorioVendaVendedor() {
     this.relatorioService.findAllVendaVendedor().subscribe(
       (data: RestOutput<Relatorio>) => {
         this.dataSource = new MatTableDataSource(data.listEntity);
@@ -46,7 +46,7 @@ export class RelatoriosComponent implements OnInit {
     );
   }
 
-  getRelatorioVendaCliente(){
+  getRelatorioVendaCliente() {
     this.relatorioService.findAllVendaCliente().subscribe(
       (data: RestOutput<Relatorio>) => {
         this.dataSource = new MatTableDataSource(data.listEntity);
@@ -58,7 +58,7 @@ export class RelatoriosComponent implements OnInit {
     );
   }
 
-  getRelatorioCompraVendedor(){
+  getRelatorioCompraFornecedor() {
     this.relatorioService.findAllCompraFornecedor().subscribe(
       (data: RestOutput<Relatorio>) => {
         this.dataSource = new MatTableDataSource(data.listEntity);
@@ -70,8 +70,8 @@ export class RelatoriosComponent implements OnInit {
     );
   }
 
-  selectedTabChange(valor: any){
-    switch(valor.index) {
+  selectedTabChange(valor: any) {
+    switch (valor.index) {
       case 0:
         this.getRelatorioVendaVendedor();
         break;
@@ -79,7 +79,7 @@ export class RelatoriosComponent implements OnInit {
         this.getRelatorioVendaCliente();
         break;
       case 2:
-        this.getRelatorioCompraVendedor();
+        this.getRelatorioCompraFornecedor();
         break;
     }
   }

@@ -66,7 +66,6 @@ export class VendaComponent implements OnInit {
           }
         };
         this.dataSource.sort = this.sort;
-        console.log(data);
       },
       (error: any) => {
 
