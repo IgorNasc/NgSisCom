@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
 
 import { Relatorio } from 'src/app/sis-com/business/model/relatorio.model';
 import { RestOutput } from 'src/app/sis-com/business/model/RestOutPut.model';
@@ -16,7 +16,8 @@ export class RelatoriosComponent implements OnInit {
   dataSource: MatTableDataSource<Relatorio>;
 
   constructor(
-    private relatorioService: RelatorioService
+    private relatorioService: RelatorioService,
+    private _snackBar: MatSnackBar
   ) {
     this.getRelatorioVendaVendedor();
   }
@@ -41,7 +42,7 @@ export class RelatoriosComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar gerar o relatorio.", "Done");
       }
     );
   }
@@ -53,7 +54,7 @@ export class RelatoriosComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar gerar o relatorio.", "Done");
       }
     );
   }
@@ -65,7 +66,7 @@ export class RelatoriosComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar gerar o relatorio.", "Done");
       }
     );
   }

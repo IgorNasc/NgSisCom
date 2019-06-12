@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
 
 import { VendedorService } from 'src/app/sis-com/business/service/vendedor.service';
 
@@ -18,7 +18,8 @@ export class VendedorComponent implements OnInit {
   vendedor: Vendedor;
 
   constructor(
-    private vendedorService: VendedorService
+    private vendedorService: VendedorService,
+    private _snackBar: MatSnackBar
   ) {
     this.getVendedores();
     this.vendedor = new Vendedor();
@@ -45,7 +46,7 @@ export class VendedorComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar os vendedores.", "Done");
       }
     );
   }
@@ -59,10 +60,14 @@ export class VendedorComponent implements OnInit {
   onSubmit(){
     this.vendedorService.save(this.vendedor).subscribe(
       (data: RestOutput<Vendedor>) => {
-
+        if(data.listWarn != null){
+          this._snackBar.open(data.listWarn[0].toString());
+        } else{
+          this._snackBar.open("Salvo com sucesso.");
+        }
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar salvar o vendedor.", "Done");
       }
     );
   }
@@ -71,9 +76,14 @@ export class VendedorComponent implements OnInit {
     this.vendedorService.delete(vendedor).subscribe(
       (data: RestOutput<Vendedor>) => {
         this.getVendedores();
+        if(data.listWarn != null){
+          this._snackBar.open(data.listWarn[0].toString());
+        } else{
+          this._snackBar.open("Deletedo com sucesso.");
+        }
       },
       (error: any) => {
-        console.log("error")
+        this._snackBar.open("Houve um erro ao tentar deletar o vendedor.", "Done");
       }
     );
   }

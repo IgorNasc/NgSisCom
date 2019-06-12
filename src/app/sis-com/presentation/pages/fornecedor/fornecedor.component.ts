@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatSort, MatTableDataSource, MatSnackBar} from '@angular/material';
 
 import { FornecedorService } from 'src/app/sis-com/business/service/fornecedor.service';
 
@@ -21,7 +21,8 @@ export class FornecedorComponent implements OnInit {
   fornecedor: Fornecedor;
 
   constructor(
-    private fornecedorService: FornecedorService
+    private fornecedorService: FornecedorService,
+    private _snackBar: MatSnackBar
   ) {
     this.getFornecedores();
     this.fornecedor = new Fornecedor();
@@ -48,7 +49,7 @@ export class FornecedorComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar fornecedores.", "Done");
       }
     );
   }
@@ -62,10 +63,14 @@ export class FornecedorComponent implements OnInit {
   onSubmit(){
     this.fornecedorService.save(this.fornecedor).subscribe(
       (data: RestOutput<Fornecedor>) => {
-
+        if(data.listWarn != null){
+          this._snackBar.open(data.listWarn[0].toString());
+        } else{
+          this._snackBar.open("Salvo com sucesso.");
+        }
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar salvar o fornecedor.", "Done");
       }
     );
   }
@@ -74,9 +79,14 @@ export class FornecedorComponent implements OnInit {
     this.fornecedorService.delete(fornecedor).subscribe(
       (data: RestOutput<Fornecedor>) => {
         this.getFornecedores();
+        if(data.listWarn != null){
+          this._snackBar.open(data.listWarn[0].toString());
+        } else{
+          this._snackBar.open("Deletedo com sucesso.");
+        }
       },
       (error: any) => {
-        console.log("error")
+        this._snackBar.open("Houve um erro ao tentar deletar o fornecedor.", "Done");
       }
     );
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
 
 import { ProdutoService } from 'src/app/sis-com/business/service/produto.service';
 
@@ -18,7 +18,8 @@ export class ProdutoComponent implements OnInit {
   produto: Produto;
 
   constructor(
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private _snackBar: MatSnackBar
   ) {
     this.getProdutos();
     this.produto = new Produto();
@@ -45,7 +46,7 @@ export class ProdutoComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar os produtos.", "Done");
       }
     );
   }
@@ -57,7 +58,7 @@ export class ProdutoComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar os produtos.", "Done");
       }
     );
   }
@@ -71,10 +72,10 @@ export class ProdutoComponent implements OnInit {
   onSubmit(){
     this.produtoService.save(this.produto).subscribe(
       (data: RestOutput<Produto>) => {
-
+        this._snackBar.open("Salvo com sucesso.");
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar salvar o produto.", "Done");
       }
     );
   }
@@ -83,9 +84,10 @@ export class ProdutoComponent implements OnInit {
     this.produtoService.delete(produto).subscribe(
       (data: RestOutput<Produto>) => {
         this.getProdutos();
+        this._snackBar.open("Deletado com sucesso");
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar deletar o produto.", "Done");
       }
     );
   }

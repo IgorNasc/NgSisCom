@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatSort, MatTableDataSource, MatSnackBar} from '@angular/material';
 
 import { VendaService } from 'src/app/sis-com/business/service/venda.service';
 import { ClienteService } from 'src/app/sis-com/business/service/cliente.service';
@@ -31,7 +31,8 @@ export class VendaComponent implements OnInit {
     private vendaService: VendaService,
     private clienteService: ClienteService,
     private vendedorService: VendedorService,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private _snackBar: MatSnackBar
   ) {
     this.getVendas();
     this.venda = new Venda();
@@ -68,7 +69,7 @@ export class VendaComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar as vendas.", "Done");
       }
     );
   }
@@ -79,7 +80,7 @@ export class VendaComponent implements OnInit {
         this.clientes = data.listEntity;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar os clientes.", "Done");
       }
     );
   }
@@ -90,7 +91,7 @@ export class VendaComponent implements OnInit {
         this.vendedores = data.listEntity;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar os vendedores.", "Done");
       }
     );
   }
@@ -101,7 +102,7 @@ export class VendaComponent implements OnInit {
         this.produtos = data.listEntity;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar os produtos.", "Done");
       }
     );
   }
@@ -115,10 +116,10 @@ export class VendaComponent implements OnInit {
   onSubmit(){
     this.vendaService.save(this.venda).subscribe(
       (data: RestOutput<Venda>) => {
-
+        this._snackBar.open("Salvo com sucesso.");
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar salvar a venda.", "Done");
       }
     );
   }
@@ -127,9 +128,10 @@ export class VendaComponent implements OnInit {
     this.vendaService.delete(venda).subscribe(
       (data: RestOutput<Venda>) => {
         this.getVendas();
+        this._snackBar.open("Deletado com sucesso.");
       },
       (error: any) => {
-        console.log("error")
+        this._snackBar.open("Houve um erro ao tentar deletar as vendas.", "Done");
       }
     );
   }

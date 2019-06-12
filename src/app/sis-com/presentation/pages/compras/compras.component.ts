@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatSort, MatTableDataSource, MatSnackBar} from '@angular/material';
 
 import { CompraService } from 'src/app/sis-com/business/service/compra.service';
 import { FornecedorService } from 'src/app/sis-com/business/service/fornecedor.service';
@@ -27,7 +27,8 @@ export class ComprasComponent implements OnInit {
   constructor(
     private compraService: CompraService,
     private fornecedorService: FornecedorService,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private _snackBar: MatSnackBar
   ) {
     this.getCompras();
     this.getFornecedores();
@@ -61,10 +62,9 @@ export class ComprasComponent implements OnInit {
           }
         };
         this.dataSource.sort = this.sort;
-        console.log(data.listEntity)
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar as compras.", "Done");
       }
     );
   }
@@ -75,7 +75,7 @@ export class ComprasComponent implements OnInit {
         this.fornecedores = data.listEntity;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar os fornecedores.", "Done");
       }
     );
   }
@@ -86,7 +86,7 @@ export class ComprasComponent implements OnInit {
         this.produtos = data.listEntity;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar os produtos.", "Done");
       }
     );
   }
@@ -100,10 +100,10 @@ export class ComprasComponent implements OnInit {
   onSubmit(){
     this.compraService.save(this.compra).subscribe(
       (data: RestOutput<Compra>) => {
-
+        this._snackBar.open("Salvo com sucesso.");
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar salvar a compra.", "Done");
       }
     );
   }
@@ -112,9 +112,10 @@ export class ComprasComponent implements OnInit {
     this.compraService.delete(compra).subscribe(
       (data: RestOutput<Compra>) => {
         this.getCompras();
+        this._snackBar.open("Deletado com sucesso.");
       },
       (error: any) => {
-        console.log("error")
+        this._snackBar.open("Houve um erro ao tentar deletar a compra.", "Done");
       }
     );
   }

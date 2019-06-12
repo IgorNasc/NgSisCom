@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatSort, MatTableDataSource, MatSnackBar} from '@angular/material';
 
 import { ClienteService } from 'src/app/sis-com/business/service/cliente.service';
 
@@ -21,7 +21,8 @@ export class ClienteComponent implements OnInit {
   cliente: Cliente;
 
   constructor(
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private _snackBar: MatSnackBar
   ) {
     this.getClientes();
     this.cliente = new Cliente();
@@ -48,7 +49,7 @@ export class ClienteComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar buscar os clientes.", "Done");
       }
     );
   }
@@ -62,10 +63,14 @@ export class ClienteComponent implements OnInit {
   onSubmit(){
     this.clienteService.save(this.cliente).subscribe(
       (data: RestOutput<Cliente>) => {
-
+        if(data.listWarn != null){
+          this._snackBar.open(data.listWarn[0].toString());
+        } else{
+          this._snackBar.open("Salvo com sucesso.");
+        }
       },
       (error: any) => {
-
+        this._snackBar.open("Houve um erro ao tentar salvar o cliente.", "Done");
       }
     );
   }
@@ -74,9 +79,14 @@ export class ClienteComponent implements OnInit {
     this.clienteService.delete(cliente).subscribe(
       (data: RestOutput<Cliente>) => {
         this.getClientes();
+        if(data.listWarn != null){
+          this._snackBar.open(data.listWarn[0].toString());
+        } else{
+          this._snackBar.open("Deletedo com sucesso.");
+        }
       },
       (error: any) => {
-        console.log("error")
+        this._snackBar.open("Houve um erro ao tentar deletar o cliente.", "Done");
       }
     );
   }
